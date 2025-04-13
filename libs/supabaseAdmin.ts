@@ -12,6 +12,7 @@ export const supabaseAdmin = createClient<Database>(
 );
 
 const upsertProductRecord = async (product: Stripe.Product) => {
+  
   const productData: Product = {
     id: product.id,
     active: product.active,
@@ -29,6 +30,7 @@ const upsertProductRecord = async (product: Stripe.Product) => {
 };
 
 const upsertPriceRecord = async (price: Stripe.Price) => {
+  console.log('Upserting price record:', price.id);
   const priceData: Price = {
     id: price.id,
     product_id: typeof price.product === 'string' ? price.product : '',

@@ -89,11 +89,11 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
               </Button>
 
               <div
-                className="flex items-center gap-2 bg-white rounded-full px-4 py-2 cursor-pointer hover:opacity-80 transition"
+                className="flex items-center gap-2 bg-white rounded-full px-5 py-2 cursor-pointer hover:opacity-80 transition max-w-[220px] whitespace-nowrap overflow-hidden"
                 onClick={() => router.push('/account')}
               >
                 <FaUserAlt className="text-black" />
-                <span className="text-black font-medium">
+                <span className="text-black font-medium truncate">
                   {user.user_metadata?.name || 'User'}
                 </span>
               </div>

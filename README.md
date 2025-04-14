@@ -1,4 +1,4 @@
-
+![image](https://github.com/user-attachments/assets/c88a2cd6-5b38-4ae3-96cc-db86be0e11c0)
 # Beatboxx | Music Web Application
 
 Welcome to the Music Web Application repository! This project aims to provide users with a feature-rich, fully responsive music streaming platform similar to Spotify. Users can discover, listen to, and upload their own songs seamlessly on any device. The application is built using Next.js13, React, TypeScript, and Supabase, offering a delightful and consistent user experience across various screen sizes.

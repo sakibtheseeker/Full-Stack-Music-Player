@@ -97,8 +97,8 @@ Please make sure to adhere to the existing code style and guidelines.
 
 ## Contact
 
-- Email: aditya.yadsr@gmail.com
-- Twitter: @fixslyr
+- Email: sakibtamboliwork@gmail.com
+- Twitter: @sakib_2501
 
 
 

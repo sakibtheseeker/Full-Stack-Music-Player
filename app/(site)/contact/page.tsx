@@ -5,7 +5,7 @@ export default function ContactPage() {
     <div className="p-8 text-white bg-gradient-to-b from-blue-800 to-emerald-800 min-h-screen">
       <h1 className="text-4xl font-bold mb-6">Contact Us</h1>
       <p className="text-lg mb-4">
-        Got questions, feedback, or just want to say hi? We'd love to hear from you!
+        Got questions, feedback, or just want to say hi? We&apos;d love to hear from you!
       </p>
 
       <div className="mb-6">

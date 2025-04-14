@@ -8,7 +8,6 @@ import Button from '@/components/Button';
 import useSubscribeModal from '@/hooks/useSubscribeModal';
 import { useUser } from '@/hooks/useUser';
 import { postData } from '@/libs/helper';
-import styles from './AccountContent.module.css'; // Importing CSS module
 
 const AccountContent = () => {
   const router = useRouter();
@@ -49,41 +48,57 @@ const AccountContent = () => {
   }
 
   return (
-    <div className={`${styles.container} mb-7 px-6`}>
-      {/* User Information Section */}
-      <div className={styles.userInfo}>
-        <p className="text-lg font-semibold">
-          Name: {user.user_metadata?.name || 'N/A'}
-        </p>
-        <p className="text-lg font-semibold">
-          Email: {user.email || 'N/A'}
-        </p>
-      </div>
+    <div className="flex justify-center py-8 px-6 bg-gray-100">
+      <div className="w-full max-w-4xl bg-white shadow-lg rounded-lg overflow-hidden">
+        {/* Profile Header */}
+        <div className="relative">
+          <img
+            src="https://via.placeholder.com/1500x500"
+            alt="Profile Banner"
+            className="w-full h-48 object-cover"
+          />
+          <div className="absolute top-32 left-6">
+            <img
+              src="https://via.placeholder.com/150"
+              alt="Profile Picture"
+              className="w-32 h-32 rounded-full border-4 border-white"
+            />
+          </div>
+        </div>
 
-      {/* Subscription Section */}
-      {!subscription ? (
-        <div className="flex flex-col gap-y-4">
-          <p>No active plan.</p>
-          <Button onClick={subscribeModal.onOpen} className="w-[300px]">
-            Subscribe
-          </Button>
+        {/* Profile Info */}
+        <div className="pt-20 pb-6 px-6">
+          <h2 className="text-2xl font-semibold text-gray-800">
+            {user.user_metadata?.name || 'User Name'}
+          </h2>
+          <p className="text-gray-600">{user.email || 'user@example.com'}</p>
+          <div className="mt-4">
+            {!subscription ? (
+              <div className="flex flex-col items-center gap-y-4">
+                <p className="text-gray-600">No active plan.</p>
+                <Button onClick={subscribeModal.onOpen} className="w-[300px]">
+                  Subscribe
+                </Button>
+              </div>
+            ) : (
+              <div className="flex flex-col items-center gap-y-4">
+                <p className="text-gray-600">
+                  You are currently on the
+                  <b> {subscription?.prices?.products?.name} </b>
+                  plan.
+                </p>
+                <Button
+                  disabled={loading || isLoading}
+                  onClick={redirectTocustomerPortal}
+                  className="w-[300px]"
+                >
+                  Open customer portal
+                </Button>
+              </div>
+            )}
+          </div>
         </div>
-      ) : (
-        <div className="flex flex-col gap-y-4">
-          <p>
-            You are currently on the
-            <b> {subscription?.prices?.products?.name} </b>
-            plan.
-          </p>
-          <Button
-            disabled={loading || isLoading}
-            onClick={redirectTocustomerPortal}
-            className="w-[300px]"
-          >
-            Open customer portal
-          </Button>
-        </div>
-      )}
+      </div>
     </div>
   );
 };

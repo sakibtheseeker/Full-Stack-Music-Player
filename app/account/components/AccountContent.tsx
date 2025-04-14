@@ -48,12 +48,24 @@ const AccountContent = () => {
   return (
     <div className={`${styles.container} mb-10 px-6`}>
       <div className={styles.userInfo}>
-        <p className={styles.userName}>
-          Name: {user.user_metadata?.name || 'N/A'}
-        </p>
-        <p className={styles.userEmail}>
-          Email: {user.email || 'N/A'}
-        </p>
+        <div className={styles.inputGroup}>
+          <label className={styles.label}>Name</label>
+          <input
+            type="text"
+            value={user.user_metadata?.name || 'N/A'}
+            disabled
+            className={styles.inputField}
+          />
+        </div>
+        <div className={styles.inputGroup}>
+          <label className={styles.label}>Email</label>
+          <input
+            type="text"
+            value={user.email || 'N/A'}
+            disabled
+            className={styles.inputField}
+          />
+        </div>
       </div>
 
       {!subscription ? (

@@ -13,20 +13,32 @@
   }
   
   .userInfo {
-    text-align: center;
+    width: 100%;
     margin-bottom: 24px;
   }
   
-  .userName {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #111827;
+  .inputGroup {
+    margin-bottom: 16px;
+    width: 100%;
   }
   
-  .userEmail {
+  .label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 0.25rem;
+  }
+  
+  .inputField {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    background-color: #e5e7eb;
+    color: #374151;
+    border: none;
+    border-radius: 0.5rem;
     font-size: 1rem;
-    color: #6b7280;
-    margin-top: 0.25rem;
+    cursor: not-allowed;
   }
   
   .subscriptionInfo {

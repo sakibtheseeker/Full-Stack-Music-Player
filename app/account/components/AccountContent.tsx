@@ -39,8 +39,12 @@ const AccountContent = () => {
       {/* User Information Section */}
       {user && (
         <div className="mb-6">
-          <p className="text-lg font-semibold">Name: {user.name || 'N/A'}</p>
-          <p className="text-lg font-semibold">Email: {user.email || 'N/A'}</p>
+          <p className="text-lg font-semibold">
+            Name: {user.user_metadata?.name || 'N/A'}
+          </p>
+          <p className="text-lg font-semibold">
+            Email: {user.email || 'N/A'}
+          </p>
         </div>
       )}
 

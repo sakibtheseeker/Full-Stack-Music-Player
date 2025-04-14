@@ -1,36 +1,45 @@
-/* AccountContent.module.css */
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    background-color: #f9fafb;
+    border-radius: 1rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    max-width: 600px;
+    margin: 0 auto;
   }
   
   .userInfo {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
   }
   
   .userName {
-    font-size: 1.25rem;
-    font-weight: bold;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #111827;
   }
   
   .userEmail {
     font-size: 1rem;
-    color: gray;
+    color: #6b7280;
+    margin-top: 0.25rem;
   }
   
   .subscriptionInfo {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
+    margin-top: 20px;
   }
   
   .subscribeButton,
   .portalButton {
-    width: 300px;
+    width: 100%;
+    max-width: 300px;
   }
   

@@ -18,7 +18,7 @@ import usePlayer from '@/hooks/usePlayer';
 
 interface SidebarProps {
   children: React.ReactNode;
-  songs: Song[];
+  songs: Song[]; 
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ children, songs }) => {
@@ -35,14 +35,14 @@ const Sidebar: React.FC<SidebarProps> = ({ children, songs }) => {
       },
       {
         label: 'About',
-        active: pathname === '/site/about',
-        href: '/site/about',
+        active: pathname === '/about',
+        href: '/about',
         icon: AiOutlineInfoCircle,
       },
       {
         label: 'Contact Us',
-        active: pathname === '/site/contact',
-        href: '/site/contact',
+        active: pathname === '/contact',
+        href: '/contact',
         icon: AiOutlineMail,
       },
       {

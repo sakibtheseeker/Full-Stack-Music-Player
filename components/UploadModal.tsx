@@ -15,7 +15,7 @@ import Button from './Button';
 
 const UploadModal = () => {
   const uploadModal = useUploadModal();
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setisLoading] = useState(false);
   const { user } = useUser();
   const supabaseClient = useSupabaseClient();
   const router = useRouter();
@@ -38,7 +38,7 @@ const UploadModal = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = async (values) => {
     try {
-      setIsLoading(true);
+      setisLoading(true);
       const imageFile = values.image?.[0];
       const songFile = values.song?.[0];
 
@@ -48,34 +48,33 @@ const UploadModal = () => {
       }
       const uniqId = uniqid();
 
-      // Sanitize the title to remove invalid characters
+      // Sanitize the title to create a valid file name
       const sanitizedTitle = values.title.replace(/[^a-zA-Z0-9-_]/g, '');
-      const songFilePath = `song-${sanitizedTitle}-${uniqId}`;
-      const imageFilePath = `image-${sanitizedTitle}-${uniqId}`;
+      const filePath = `song-${sanitizedTitle}-${uniqId}`;
 
       // Upload song
       const { data: songData, error: songError } = await supabaseClient.storage
         .from('songs')
-        .upload(songFilePath, songFile, {
+        .upload(filePath, songFile, {
           cacheControl: '3600',
           upsert: false,
         });
 
       if (songError) {
-        setIsLoading(false);
+        setisLoading(false);
         return toast.error('Failed song upload');
       }
 
       // Upload image
-      const { data: imageData, error: imageError } = await supabaseClient.storage
-        .from('images')
-        .upload(imageFilePath, imageFile, {
-          cacheControl: '3600',
-          upsert: false,
-        });
-
+      const { data: imageData, error: imageError } =
+        await supabaseClient.storage
+          .from('images')
+          .upload(filePath, imageFile, {
+            cacheControl: '3600',
+            upsert: false,
+          });
       if (imageError) {
-        setIsLoading(false);
+        setisLoading(false);
         return toast.error('Failed image upload');
       }
 
@@ -91,19 +90,18 @@ const UploadModal = () => {
         });
 
       if (supabaseError) {
-        setIsLoading(false);
+        setisLoading(false);
         return toast.error(supabaseError.message);
       }
-
       router.refresh();
-      setIsLoading(false);
+      setisLoading(false);
       toast.success('Song created!');
       reset();
       uploadModal.onClose();
     } catch (error) {
       toast.error('Something went wrong! Please try again');
     } finally {
-      setIsLoading(false);
+      setisLoading(false);
     }
   };
 
@@ -115,7 +113,7 @@ const UploadModal = () => {
       onChange={onChange}
     >
       <form
-        className="flex flex-col gap-y-4"
+        className="flex  flex-col gap-y-4"
         onSubmit={handleSubmit(onSubmit)}
       >
         <Input

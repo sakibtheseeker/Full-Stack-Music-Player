@@ -47,6 +47,8 @@ const AccountContent = () => {
 
   return (
     <div className={`${styles.container} mb-10 px-6`}>
+      <h2 className={styles.header}>Profile</h2>
+
       <div className={styles.userInfo}>
         <div className={styles.inputGroup}>
           <label className={styles.label}>Name</label>

@@ -3,7 +3,6 @@
 import { useRouter } from 'next/navigation';
 import { twMerge } from 'tailwind-merge';
 import { toast } from 'react-hot-toast';
-
 import { RxCaretLeft, RxCaretRight } from 'react-icons/rx';
 import { HiHome } from 'react-icons/hi';
 import { BiSearch } from 'react-icons/bi';
@@ -47,7 +46,7 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
       )}
     >
       <div className="w-full mb-4 flex items-center justify-between">
-        {/* Desktop Navigation Buttons */}
+        {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-x-2">
           <button
             onClick={() => router.back()}
@@ -63,7 +62,7 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
           </button>
         </div>
 
-        {/* Mobile Navigation Buttons */}
+        {/* Mobile Navigation */}
         <div className="flex md:hidden gap-x-2 items-center">
           <button
             className="rounded-full p-2 bg-white flex items-center justify-center hover:opacity-75 transition"
@@ -79,17 +78,17 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
           </button>
         </div>
 
-        {/* Auth Buttons / User Info */}
+        {/* Auth / User Section */}
         <div className="flex justify-between items-center gap-x-4">
           {user ? (
             <div className="flex gap-x-4 items-center">
               <Button className="bg-white px-6 py-2" onClick={handleLogout}>
                 Logout
               </Button>
+
               <div
-                className="flex items-center gap-2 bg-white rounded-full px-4 py-1 cursor-pointer hover:opacity-80 transition"
+                className="flex items-center gap-2 bg-white rounded-full px-4 py-2 cursor-pointer hover:opacity-80 transition min-w-[180px] max-w-[220px]"
                 onClick={() => router.push('/account')}
-                style={{ maxWidth: '200px' }}
               >
                 <FaUserAlt className="text-black" size={16} />
                 <span className="text-black font-medium truncate text-sm">
@@ -120,7 +119,7 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
         </div>
       </div>
 
-      {/* Page Content Below Header */}
+      {/* Page Content */}
       {children}
     </div>
   );

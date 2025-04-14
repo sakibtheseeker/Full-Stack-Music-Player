@@ -6,10 +6,7 @@ Welcome to the Music Web Application repository! This project aims to provide us
 
 ## Demo
 
-https://beatboxx.vercel.app/
-
-## Project Demo video
-https://youtu.be/MWWtlCL7dP4
+https://full-stack-music-player-vp5a.vercel.app/
 
 
 ## Features

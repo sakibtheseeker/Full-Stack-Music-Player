@@ -87,11 +87,12 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
                 Logout
               </Button>
               <div
-                className="flex items-center gap-2 bg-white rounded-full px-5 py-2 cursor-pointer hover:opacity-80 transition min-w-[180px] max-w-full"
+                className="flex items-center gap-2 bg-white rounded-full px-4 py-1 cursor-pointer hover:opacity-80 transition"
                 onClick={() => router.push('/account')}
+                style={{ maxWidth: '200px' }}
               >
-                <FaUserAlt className="text-black" />
-                <span className="text-black font-medium">
+                <FaUserAlt className="text-black" size={16} />
+                <span className="text-black font-medium truncate text-sm">
                   {user.user_metadata?.name || 'User'}
                 </span>
               </div>

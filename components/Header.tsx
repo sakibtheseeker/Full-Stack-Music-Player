@@ -92,7 +92,7 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
               >
                 <div className="flex items-center justify-center gap-2">
                   <FaUserAlt className="text-black" />
-                  <span className="text-black font-medium">
+                  <span className="text-black font-bold">
                     {user.user_metadata?.name || 'User'}
                   </span>
                 </div>

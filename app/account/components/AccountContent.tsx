@@ -8,6 +8,7 @@ import Button from '@/components/Button';
 import useSubscribeModal from '@/hooks/useSubscribeModal';
 import { useUser } from '@/hooks/useUser';
 import { postData } from '@/libs/helper';
+import styles from './AccountContent.module.css'; // Importing CSS module
 
 const AccountContent = () => {
   const router = useRouter();
@@ -34,19 +35,30 @@ const AccountContent = () => {
     setLoading(false);
   };
 
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!user) {
+    return (
+      <div>
+        <p>Please sign in to view your account details.</p>
+        {/* Add your sign-in component or redirect logic here */}
+      </div>
+    );
+  }
+
   return (
-    <div className="mb-7 px-6">
+    <div className={`${styles.container} mb-7 px-6`}>
       {/* User Information Section */}
-      {user && (
-        <div className="mb-6">
-          <p className="text-lg font-semibold">
-            Name: {user.user_metadata?.name || 'N/A'}
-          </p>
-          <p className="text-lg font-semibold">
-            Email: {user.email || 'N/A'}
-          </p>
-        </div>
-      )}
+      <div className={styles.userInfo}>
+        <p className="text-lg font-semibold">
+          Name: {user.user_metadata?.name || 'N/A'}
+        </p>
+        <p className="text-lg font-semibold">
+          Email: {user.email || 'N/A'}
+        </p>
+      </div>
 
       {/* Subscription Section */}
       {!subscription ? (

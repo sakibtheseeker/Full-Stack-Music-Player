@@ -4,10 +4,12 @@ import { usePathname } from 'next/navigation';
 import { useMemo } from 'react';
 import { twMerge } from 'tailwind-merge';
 
-//icons
+// Icons
 import { HiHome } from 'react-icons/hi';
 import { BiSearch } from 'react-icons/bi';
-//components
+import { AiOutlineInfoCircle, AiOutlineMail } from 'react-icons/ai';
+
+// Components
 import Box from './Box';
 import SidebarItem from './SidebarItem';
 import Library from './Library';
@@ -27,9 +29,21 @@ const Sidebar: React.FC<SidebarProps> = ({ children, songs }) => {
     () => [
       {
         label: 'Home',
-        active: pathname !== '/search',
+        active: pathname === '/',
         href: '/',
         icon: HiHome,
+      },
+      {
+        label: 'About',
+        active: pathname === '/site/about',
+        href: '/site/about',
+        icon: AiOutlineInfoCircle,
+      },
+      {
+        label: 'Contact Us',
+        active: pathname === '/site/contact',
+        href: '/site/contact',
+        icon: AiOutlineMail,
       },
       {
         label: 'Search',
@@ -40,6 +54,7 @@ const Sidebar: React.FC<SidebarProps> = ({ children, songs }) => {
     ],
     [pathname]
   );
+
   return (
     <div
       className={twMerge(

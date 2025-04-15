@@ -6,7 +6,7 @@ Welcome to the Music Web Application repository! This project aims to provide us
 
 ## Demo
 
-https://full-stack-music-player-vp5a.vercel.app/
+https://beatboxxmusic.vercel.app/
 
 
 ## Features
@@ -97,8 +97,8 @@ Please make sure to adhere to the existing code style and guidelines.
 
 ## Contact
 
-- Email: aditya.yadsr@gmail.com
-- Twitter: @fixslyr
+- Email: sakibtamboliwork@gmail.com
+- Twitter: @sakib_2501
 
 
 

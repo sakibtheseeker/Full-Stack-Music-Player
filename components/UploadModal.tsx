@@ -13,9 +13,11 @@ import Modal from './Modal';
 import Input from './Input';
 import Button from './Button';
 
+console.log('⚠️ UploadModal loaded');
+
 const UploadModal = () => {
   const uploadModal = useUploadModal();
-  const [isLoading, setisLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const { user } = useUser();
   const supabaseClient = useSupabaseClient();
   const router = useRouter();
@@ -38,7 +40,7 @@ const UploadModal = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = async (values) => {
     try {
-      setisLoading(true);
+      setIsLoading(true);
       const imageFile = values.image?.[0];
       const songFile = values.song?.[0];
 
@@ -46,13 +48,12 @@ const UploadModal = () => {
         toast.error('Missing fields');
         return;
       }
-      const uniqId = uniqid();
 
-      // Sanitize the title to create a valid file name
-      const sanitizedTitle = values.title.replace(/[^a-zA-Z0-9-_]/g, '');
+      const uniqId = uniqid();
+      const sanitizedTitle = values.title.trim().replace(/[^a-zA-Z0-9-_]/g, '');
       const filePath = `song-${sanitizedTitle}-${uniqId}`;
 
-      // Upload song
+      // Upload song file
       const { data: songData, error: songError } = await supabaseClient.storage
         .from('songs')
         .upload(filePath, songFile, {
@@ -61,47 +62,45 @@ const UploadModal = () => {
         });
 
       if (songError) {
-        setisLoading(false);
-        return toast.error('Failed song upload');
+        toast.error('Failed to upload song');
+        return;
       }
 
-      // Upload image
-      const { data: imageData, error: imageError } =
-        await supabaseClient.storage
-          .from('images')
-          .upload(filePath, imageFile, {
-            cacheControl: '3600',
-            upsert: false,
-          });
-      if (imageError) {
-        setisLoading(false);
-        return toast.error('Failed image upload');
-      }
-
-      // Insert song metadata into the database
-      const { error: supabaseError } = await supabaseClient
-        .from('songs')
-        .insert({
-          user_id: user.id,
-          title: values.title,
-          author: values.author,
-          image_path: imageData.path,
-          song_path: songData.path,
+      // Upload image file
+      const { data: imageData, error: imageError } = await supabaseClient.storage
+        .from('images')
+        .upload(filePath, imageFile, {
+          cacheControl: '3600',
+          upsert: false,
         });
 
-      if (supabaseError) {
-        setisLoading(false);
-        return toast.error(supabaseError.message);
+      if (imageError) {
+        toast.error('Failed to upload image');
+        return;
       }
-      router.refresh();
-      setisLoading(false);
+
+      // Insert metadata to songs table
+      const { error: dbError } = await supabaseClient.from('songs').insert({
+        user_id: user.id,
+        title: values.title,
+        author: values.author,
+        image_path: imageData.path,
+        song_path: songData.path,
+      });
+
+      if (dbError) {
+        toast.error(dbError.message);
+        return;
+      }
+
       toast.success('Song created!');
+      router.refresh();
       reset();
       uploadModal.onClose();
     } catch (error) {
-      toast.error('Something went wrong! Please try again');
+      toast.error('Something went wrong! Please try again.');
     } finally {
-      setisLoading(false);
+      setIsLoading(false);
     }
   };
 
@@ -112,10 +111,7 @@ const UploadModal = () => {
       isOpen={uploadModal.isOpen}
       onChange={onChange}
     >
-      <form
-        className="flex  flex-col gap-y-4"
-        onSubmit={handleSubmit(onSubmit)}
-      >
+      <form className="flex flex-col gap-y-4" onSubmit={handleSubmit(onSubmit)}>
         <Input
           id="title"
           disabled={isLoading}
@@ -126,7 +122,7 @@ const UploadModal = () => {
           id="author"
           disabled={isLoading}
           {...register('author', { required: true })}
-          placeholder="Artist Name"
+          placeholder="Artist name"
         />
         <div className="pb-1">
           <div>Select a song file</div>

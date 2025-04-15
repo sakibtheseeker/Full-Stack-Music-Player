@@ -7,6 +7,7 @@ interface UserProviderProps {
 }
 
 const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
+  console.log('✅ UserProvider mounted');
   return <MyUserContextProvider>{children}</MyUserContextProvider>;
 };
 
